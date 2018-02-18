@@ -42,7 +42,7 @@ public class ServletPractica2 extends HttpServlet {
 		requestHeader(request, response);
 		html.print("<br>Fin de cabeceras de petición. <br>");
 		
-		
+		responseHeader(request, response);
 		
 		Date date = (Date)sesion.getAttribute("date");
 		if(date != null) {
@@ -103,5 +103,34 @@ public class ServletPractica2 extends HttpServlet {
 		}
 		
 		//Falta obtener cabeceras de respuesta
+		//******************MAL*********************
+		//Creamos un método que nos permita obtener las cabeceras de respuesta HTTP
+				public void responseHeader(HttpServletRequest req, HttpServletResponse res) throws IOException {
+							//Definimos una variable out de tipo Printwriter.
+							//Esta clase imprime representaciones formateadas de objetos en una secuencia de salida de texto.
+					        PrintWriter out = res.getWriter();
+					        
+					        out.write("Cabeceras de respuesta: ");
+					        
+					        Collection<String> headerNames = res.getHeaderNames();
+						   
+					       
+					        for(int pos=0;pos< headerNames.size();pos++) {
+					        
+					        	while(headerNames.iterator().hasNext()){
+					        	String headerName = headerNames.toString();
+					        	out.write(headerName);
+					        	Collection<String> headersValue = res.getHeaders(headerName);
+					        	for(int pos1=0;pos1<headersValue.size();pos++) {
+					        		while(headersValue.iterator().hasNext()) {
+					        			String headerValue = headersValue.toString();
+					        			out.write(headerValue);
+					        		}
+					        	}
+					        	
+					        }
+					        }
+					       
+				}
 		
 }
