@@ -39,8 +39,10 @@ public class ServletPractica2Parte2 extends HttpServlet {
 		out.println("<html><head><title>Practica 2 Parte 2</title></head>");
 		out.println("<body ><center><h1> Test practica 2 </h1>");
 		String user = request.getParameter("username");
+		//Creamos una cookie llamada Usuario para poder obtener el valor 
+		//de la cookie mediante un metodo de esta clase
 		Cookie c = new Cookie("Usuario", user);
-		
+		//Obtenemos el valor de nuestra cookie
 		out.println("<h3> El usuario es : " + c.getValue() + "</h3>");
 		String pass =request.getParameter("pass");
 		out.println("<h3> La contraseña es : "+ pass + "</h3>");
