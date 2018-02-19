@@ -42,7 +42,8 @@ public class ServletPractica2 extends HttpServlet {
 		requestHeader(request, response);
 		html.print("<br>Fin de cabeceras de petición. <br>");
 		
-		responseHeader(request, response);
+		//responseHeader(request, response);
+		
 		
 		Date date = (Date)sesion.getAttribute("date");
 		if(date != null) {
@@ -53,6 +54,9 @@ public class ServletPractica2 extends HttpServlet {
 		}
 		date = new Date();
 		sesion.setAttribute("date", date);
+		//Establece el tiempo de la cookie de sesion a 3 segundos.
+		//Esto hace que al exceder el tiempo de la cookie, el servidor te proporcione un SessionID nuevo.
+		sesion.setMaxInactiveInterval(3);
 		html.print("Fecha actual: " + date);
 		html.print("</strong>");
 		
