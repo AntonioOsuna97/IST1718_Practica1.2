@@ -42,15 +42,17 @@ public class ServletPractica2Parte2 extends HttpServlet {
 		//Creamos una cookie llamada Usuario para poder obtener el valor 
 		//de la cookie mediante un metodo de esta clase
 		Cookie c = new Cookie("Usuario", user);
+		//Mediante el método setMaxAge nos permite asignar un tiempo de expiración a nuestra 
+		//cookie.Permitiendo que la borre una vez se haya sobrepasado el tiempo de expiración.
 		c.setMaxAge(0);
 		//Obtenemos el valor de nuestra cookie
 		out.println("<h3> El usuario es : " + c.getValue() + "</h3>");
 		String pass =request.getParameter("pass");
-		out.println("<h3> La contrase�a es : "+ pass + "</h3>");
+		out.println("<h3> La contraseña es : "+ pass + "</h3>");
 		String ema = request.getParameter("email");
 		out.println("<h3> El email es: " + ema + "</h3>");
 		Date date = new Date();
-		out.println("<h3>Tiempo a la hora que se realiz� el test:  " + date.toString() +"</h3>");
+		out.println("<h3>Tiempo a la hora que se realizó el test:  " + date.toString() +"</h3>");
 		out.println("</center></body></html>");
 		response.addCookie(c);
 		
