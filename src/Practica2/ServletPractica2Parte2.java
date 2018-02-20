@@ -42,6 +42,7 @@ public class ServletPractica2Parte2 extends HttpServlet {
 		//Creamos una cookie llamada Usuario para poder obtener el valor 
 		//de la cookie mediante un metodo de esta clase
 		Cookie c = new Cookie("Usuario", user);
+		c.setMaxAge(0);
 		//Obtenemos el valor de nuestra cookie
 		out.println("<h3> El usuario es : " + c.getValue() + "</h3>");
 		String pass =request.getParameter("pass");
@@ -51,7 +52,10 @@ public class ServletPractica2Parte2 extends HttpServlet {
 		Date date = new Date();
 		out.println("<h3>Tiempo a la hora que se realizó el test:  " + date.toString() +"</h3>");
 		out.println("</center></body></html>");
+		response.addCookie(c);
+		
 		out.close();
+		
 		}
 	
 

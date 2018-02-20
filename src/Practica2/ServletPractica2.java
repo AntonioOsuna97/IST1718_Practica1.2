@@ -38,25 +38,23 @@ public class ServletPractica2 extends HttpServlet {
 		response.setContentType("text/html");
 		PrintWriter html = response.getWriter();
 		html.print("<strong>");
-		//Obtenemos cabeceras de petición
-		requestHeader(request, response);
-		html.print("<br>Fin de cabeceras de petición. <br>");
-		
-		//responseHeader(request, response);
-		
+		//No hace falta obtener cabeceras de petición, para analizar la diferencia
+		//lo hacemos mediante la opcion de inspeccionar de nuestro navegador
+		// NO -->requestHeader(request, response);
+			
 		
 		Date date = (Date)sesion.getAttribute("date");
 		if(date != null) {
-		html.print("<br>Último acceso de la sesión: " + date + "<br>");
+		html.print("Último acceso de la sesión: " + date + "<br>");
 		}
 		else {
 		html.print("Este es el primer acceso de la sesión <br>");
 		}
 		date = new Date();
 		sesion.setAttribute("date", date);
-		//Establece el tiempo de la cookie de sesion a 3 segundos.
+		//Establece el tiempo de la cookie de sesion a 5 segundos.
 		//Esto hace que al exceder el tiempo de la cookie, el servidor te proporcione un SessionID nuevo.
-		sesion.setMaxInactiveInterval(3);
+		sesion.setMaxInactiveInterval(5);
 		html.print("Fecha actual: " + date);
 		html.print("</strong>");
 		
@@ -74,6 +72,7 @@ public class ServletPractica2 extends HttpServlet {
 
 	
 	//Creamos un método que nos permita obtener las cabeceras de petición HTTP
+	//No lo vamos a utilizar
 		public void requestHeader(HttpServletRequest req, HttpServletResponse res) throws IOException {
 					//Definimos una variable out de tipo Printwriter.
 					//Esta clase imprime representaciones formateadas de objetos en una secuencia de salida de texto.
@@ -106,34 +105,5 @@ public class ServletPractica2 extends HttpServlet {
 			        }
 		}
 		
-		//Falta obtener cabeceras de respuesta
-		//******************MAL, no recorre las cabeceras, el iterador no recorre la lista*********************
-		//Creamos un método que nos permita obtener las cabeceras de respuesta HTTP
-				public void responseHeader(HttpServletRequest req, HttpServletResponse res) throws IOException {
-							//Definimos una variable out de tipo Printwriter.
-							//Esta clase imprime representaciones formateadas de objetos en una secuencia de salida de texto.
-					        PrintWriter out = res.getWriter();
-					        
-					        out.write("Cabeceras de respuesta: ");
-					        
-					        Collection<String> headerNames = res.getHeaderNames();
-				 
-
-					        	while(headerNames.iterator().hasNext()){
-					        	String headerName = headerNames.iterator().next();
-					        	out.write(headerName);
-					        	
-					        	Collection<String> headersValue = res.getHeaders(headerName);
-					        	
-					        		//while(headersValue.iterator().hasNext()) {
-					        			String headerValue = headersValue.iterator().next();
-					        			out.write(headerValue);
-					        		//}
-					        	}
-					        	
-					        
-					        
-					       
-				}
 		
 }
